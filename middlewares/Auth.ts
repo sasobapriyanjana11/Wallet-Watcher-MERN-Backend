@@ -1,5 +1,6 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { Request, Response, NextFunction } from 'express';
+
 const isAuthenticated = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
         //! Get the token from the header
@@ -17,7 +18,7 @@ const isAuthenticated = async (req: Request, res: Response, next: NextFunction):
 
         if (decoded) {
             //! Save the user req obj
-            req.user = decoded.id;
+            (req as any).user = decoded;
             next();
         } else {
             const err = new Error("Token expired, login again");
