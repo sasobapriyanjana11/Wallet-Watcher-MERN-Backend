@@ -4,7 +4,8 @@ import userRouter from "./routes/userRouter";
 import cors from "cors";
 import errorHandler from "./middlewares/errorHandlerMiddleware";
 import categoryRouter from "./routes/categoryRouter";
-// import transactionRouter from "./routes/transactionRouter";
+import transactionRouter from "./routes/transactionRouter";
+
 
 dotenv.config();
 const app = express();
@@ -22,7 +23,7 @@ app.use(express.json()); // Pass incoming JSON data
 //! Routes
 app.use(userRouter);
 app.use(categoryRouter);
-// app.use(transactionRouter);
+app.use(transactionRouter);
 
 //! Error handler
 app.use(errorHandler);
