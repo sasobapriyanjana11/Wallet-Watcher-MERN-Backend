@@ -46,7 +46,7 @@ const usersController = {
     }),
 
     //! Login
-    login: asyncHandler(async (req: Request, res: Response) => {
+    login: asyncHandler(async (req:Request, res: Response) => {
         const { email, password } = req.body;
 
         //! Find user by email
@@ -111,7 +111,7 @@ const usersController = {
     }),
 
     //! Change Password
-    changeUserPassword: asyncHandler(async (req: Request, res: Response) => {
+    changeUserPassword: asyncHandler(async (req:Request, res: Response) => {
         const userId = (req as any).user?.id;
         const { newPassword } = req.body;
 

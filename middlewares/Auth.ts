@@ -1,5 +1,10 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { Request, Response, NextFunction } from 'express';
+import {User} from "../model/User";
+
+export interface AuthRequest extends Request {
+    user?: User;
+}
 
 const isAuthenticated = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
     try {
