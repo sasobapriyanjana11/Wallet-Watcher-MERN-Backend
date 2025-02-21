@@ -1,11 +1,12 @@
 import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
-import { PrismaClient, CategoryType } from "@prisma/client"; // Import CategoryType enum
+import { PrismaClient, CategoryType } from "@prisma/client";
+import {Category} from "../model/Category"; // Import CategoryType enum
 
 const prisma = new PrismaClient();
 
 interface AuthRequest extends Request {
-    user?: { id: string }; // Assuming the user ID is stored as a string
+    user?: { id: string };
 }
 
 const categoryController = {
@@ -39,7 +40,7 @@ const categoryController = {
             throw new Error(`Category ${categoryExists.name} already exists`);
         }
 
-        const category = await prisma.category.create({
+        const category:Category = await prisma.category.create({
             data: {
                 name: normalizedName,
                 type: type.toLowerCase() as CategoryType, // ✅ Cast type to Prisma's CategoryType
@@ -76,7 +77,7 @@ const categoryController = {
         const userId = Number(req.user.id); // Convert user ID to number
 
         // Check if category exists and belongs to the user
-        const category = await prisma.category.findUnique({
+        const category:Category|null = await prisma.category.findUnique({
             where: { id: Number(categoryId) },
         });
 
