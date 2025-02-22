@@ -147,7 +147,6 @@ const usersController = {
             message: "Password changed successfully",
         });
     }),
-
     //! Update User Profile
     updateUserProfile: asyncHandler(async (req: Request, res: Response) => {
         const userId = (req as any).user?.id;
