@@ -10,7 +10,7 @@ interface AuthRequest extends Request {
     user?: { id: string };
 }
 class TransactionController {
-    //! Create a transaction
+    // //! Create a transaction
     create = asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
         const {type, categoryId, amount, date, description} = req.body;
 
@@ -42,7 +42,6 @@ class TransactionController {
         res.status(201).json(transaction);
 
     });
-
     //! Get filtered transactions
     getFilteredTransactions = asyncHandler(async (req: AuthRequest, res: Response): Promise<void> => {
         const { startDate, endDate, type, category } = req.query;
